@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+    <h3>User</h3>  
+    <form #userForm="ngForm">
+        <div class="alert alert-success" *ngIf="message">
+            {{message}}
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="user.firstName">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="user.lastName">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email" name="email" [(ngModel)]="user.email">
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" [(ngModel)]="user.phoneNumber">
+        </div>
+        <button type="submit" class="btn btn-primary" *ngIf="user.id==null" (click)="addUser(user)">Add</button>
+        <button type="submit" class="btn btn-primary" *ngIf="user.id!=null" (click)="updateUser(user)">Update</button>
+    </form>
+    <br/>
+    <h3>Users</h3>    
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.firstName}}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phoneNumber}}</td>
+          <td><a href="javascript:void(0)" (click)="editUser(user.id)">
+              <i class="fa fa-eye" aria-hidden="true"></i></a>
+              &nbsp;<a href="javascript:void(0)" (click)="deleteUser(user.id)">
+              <i class="fa fa-trash" aria-hidden="true"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+</div>
+</div>
+
+  
